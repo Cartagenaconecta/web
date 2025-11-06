@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entidades de Apoyo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header .subtitle {
+            font-size: 1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .entidades {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+            min-height: 60vh;
+        }
+
+        .entidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .entidad-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entidad-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .entidad-card:hover::before {
+            opacity: 1;
+        }
+
+        .entidad-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .entidad-card:active {
+            transform: translateY(-8px);
+        }
+
+        .entidad-logo {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entidad-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entidad-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entidad-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #667eea;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1;
+        }
+
+        .entidad-card:hover::after {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .click-hint {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-section {
+            background: white;
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .entidades-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .entidad-card::after {
+                font-size: 1.5rem;
+                bottom: 10px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Cartagena Conecta</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="directorio.html">Directorio Colaborativo</a></li>
+                <li><a href="entidades de apoyo.html" class="active">Entidades de Apoyo</a></li>
+                <li><a href="contactos.html">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Entidades de Apoyo</h1>
+        <p>Organizaciones que respaldan y fortalecen el emprendimiento en Cartagena</p>
+        <p class="subtitle"><span class="click-hint">💡 Haz clic en cualquier entidad para visitar su sitio web</span></p>
+    </div>
+
+    <section class="entidades">
+        <div class="entidades-grid">
+            <a href="https://www.cccartagena.org.co/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🏛️</div>
+                <h3>Cámara de Comercio de Cartagena</h3>
+                <p>Apoyo institucional, registro empresarial y formalización de negocios</p>
+            </a>
+
+            <a href="https://www.sena.edu.co/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🎓</div>
+                <h3>SENA</h3>
+                <p>Capacitación gratuita y formación empresarial para emprendedores</p>
+            </a>
+
+            <a href="https://www.bancoldex.com/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">💰</div>
+                <h3>Bancóldex</h3>
+                <p>Financiamiento y créditos especiales para emprendedores y PYMES</p>
+            </a>
+
+            <a href="https://www.cartagena.gov.co/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🏢</div>
+                <h3>Alcaldía de Cartagena</h3>
+                <p>Programas de desarrollo empresarial y apoyo a negocios locales</p>
+            </a>
+
+            <a href="https://www.innpulsacolombia.com/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🚀</div>
+                <h3>iNNpulsa Colombia</h3>
+                <p>Impulso a la innovación, emprendimiento dinámico y mentoría</p>
+            </a>
+
+            <a href="https://www.cartagena.gov.co/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🤝</div>
+                <h3>Fundaciones Locales</h3>
+                <p>Apoyo social, comunitario y desarrollo de proyectos productivos</p>
+            </a>
+
+            <a href="https://www.mincit.gov.co/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">📊</div>
+                <h3>Ministerio de Comercio</h3>
+                <p>Políticas públicas de apoyo al comercio local y exportaciones</p>
+            </a>
+
+            <a href="https://www.colombiaproductiva.com/" target="_blank" class="entidad-card">
+                <div class="entidad-logo">🌐</div>
+                <h3>Colombia Productiva</h3>
+                <p>Transformación productiva, competitividad y mejora de procesos</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>¿Cómo te pueden ayudar?</h2>
+        <p>Estas entidades ofrecen diversos programas de apoyo que incluyen capacitación gratuita, financiamiento, asesoría técnica, mentorías y conexiones con otros emprendedores.</p>
+        <p>Cada una cuenta con programas específicos diseñados para impulsar el crecimiento de tu negocio en diferentes etapas: desde la idea inicial hasta la consolidación y expansión.</p>
+        <p>Para más información sobre cómo acceder a estos recursos, contáctanos y te guiaremos en el proceso.</p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Cartagena Conecta</h3>
+            <p>Impulsando el emprendimiento local</p>
+            <div class="social-links">
+                <a href="#">📘 Facebook</a>
+                <a href="#">📷 Instagram</a>
+                <a href="#">🐦 Twitter</a>
+                <a href="#">💼 LinkedIn</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 Cartagena Conecta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
