@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Directorio Colaborativo</title>
+    
+    <style>
+        /*
+        **************************************************************
+        * ESTE ES EL CSS RESPONSIVE COMPLETO PARA EL DIRECTORIO
+        **************************************************************
+        */
+        
+        /* ==========================================================
+           RESET Y ESTILOS BASE
+           ========================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* ==========================================================
+           HEADER Y NAVEGACIÓN
+           ========================================================== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: transform 0.3s ease-in-out; /* Transición para el menú responsive */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+        
+        /* ----------------------------------------------------------
+           ESTILOS PARA MENÚ DE HAMBURGUESA (CSS PURO)
+           ---------------------------------------------------------- */
+
+        /* 1. Checkbox: Oculto en todo momento */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* 2. Label: Actúa como el botón de hamburguesa (Oculto en escritorio) */
+        .hamburger-label {
+            display: none; 
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+
+        /* ==========================================================
+           SECCIONES DE CONTENIDO GENERAL
+           ========================================================== */
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .directorio {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+            min-height: 60vh;
+        }
+
+        /* ADAPTACIÓN DE LA GRILLA */
+        .directorio-grid {
+            display: grid;
+            /* Diseño adaptativo: mínimo 300px por columna */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ESTILOS DE TARJETA */
+        .directorio-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column; /* Asegura que el contenido se apile bien */
+            align-items: center;
+            text-align: center;
+        }
+
+        .directorio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .directorio-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #764ba2;
+        }
+
+        .directorio-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .directorio-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            flex-grow: 1; /* Permite que el párrafo empuje el resto del contenido */
+        }
+
+        .testimonial-quote {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            width: 100%; /* Ocupa todo el ancho de la tarjeta */
+            text-align: left;
+        }
+
+        .ver-mas-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: auto; /* Asegura que el botón se pegue al final */
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .ver-mas-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        /* ==========================================================
+           RESPONSIVE: PANTALLAS PEQUEÑAS (MÓVIL) <= 768px
+           ========================================================== */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón de hamburguesa */
+            .hamburger-label {
+                display: block; 
+            }
+
+            /* Transformar el menú en un panel lateral */
+            .nav-links {
+                position: fixed; 
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%; 
+                max-width: 300px; 
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem; 
+                transform: translateX(100%); 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 99;
+            }
+
+            /* Mostrar el menú cuando el checkbox está marcado */
+            #menu-toggle:checked ~ .nav-links {
+                transform: translateX(0); 
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem; 
+                padding: 0.5rem 0;
+            }
+
+            /* Adaptación del Encabezado */
+            .page-header {
+                padding: 3rem 1.5rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            /* Adaptación del Directorio Grid */
+            .directorio {
+                padding: 3rem 1rem;
+            }
+            
+            .directorio-grid {
+                grid-template-columns: 1fr; /* Una sola columna en móvil */
+                gap: 2rem;
+            }
+            
+            .directorio-card {
+                padding: 2rem;
+            }
+            
+            /* Adaptación del Footer */
+            footer {
+                padding: 2rem 1rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Cartagena Conecta</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger-label" aria-label="Menú de Navegación">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="directorio.html" class="active">Directorio Colaborativo</a></li>
+                <li><a href="entidades de apoyo.html">Entidades de Apoyo</a></li>
+                <li><a href="contactos.html">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Directorio Colaborativo</h1>
+        <p>Conoce a los emprendedores locales que están transformando Cartagena con sus negocios</p>
+    </div>
+
+    <section class="directorio">
+        <div class="directorio-grid">
+            <a href="diseno costura.html" class="directorio-card">
+                <div class="directorio-icon">✂️</div>
+                <h3>Diseño y Costura</h3>
+                <p>Emprendedores del sector textil y moda que crean piezas únicas para la comunidad. Desde diseños personalizados hasta reparaciones especializadas.</p>
+                <div class="testimonial-quote">
+                    "Gracias a la plataforma, mis diseños de costura son conocidos en toda la ciudad. Es una oportunidad de crecimiento que nunca imaginé."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+
+            <a href="gastronomia.html" class="directorio-card">
+                <div class="directorio-icon">🍽️</div>
+                <h3>Gastronomía</h3>
+                <p>Restaurantes y negocios de comida que ofrecen los sabores auténticos de Cartagena. Delivery, catering y experiencias culinarias únicas.</p>
+                <div class="testimonial-quote">
+                    "Mi restaurante ha duplicado sus pedidos online. Esta plataforma me ayudó a digitalizar mi negocio de forma sencilla."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+
+            <a href="artesanias.html" class="directorio-card">
+                <div class="directorio-icon">🎨</div>
+                <h3>Artesanías</h3>
+                <p>Artistas y artesanos que preservan la cultura local a través de sus creaciones. Productos hechos a mano con amor y dedicación.</p>
+                <div class="testimonial-quote">
+                    "Como artesana, ahora puedo vender mis productos a clientes de toda Colombia. Esta plataforma cambió mi vida."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+
+            <a href="servicios profesionales.html" class="directorio-card">
+                <div class="directorio-icon">💼</div>
+                <h3>Servicios Profesionales</h3>
+                <p>Profesionales locales ofreciendo servicios de calidad: contabilidad, diseño gráfico, marketing digital, consultoría y más.</p>
+                <div class="testimonial-quote">
+                    "Conecté con más clientes en un mes que en todo el año anterior. La visibilidad que me brinda la plataforma es increíble."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+
+            <a href="comercio local.html" class="directorio-card">
+                <div class="directorio-icon">🛍️</div>
+                <h3>Comercio Local</h3>
+                <p>Tiendas y negocios que fortalecen la economía de nuestra región. Productos de calidad con el sello de Cartagena.</p>
+                <div class="testimonial-quote">
+                    "Mis ventas aumentaron un 300%. Ahora soy parte de una comunidad que realmente apoya lo local."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+
+            <a href="emprendimientos sostenibles.html" class="directorio-card">
+                <div class="directorio-icon">🌱</div>
+                <h3>Emprendimientos Sostenibles</h3>
+                <p>Negocios comprometidos con el medio ambiente y la sostenibilidad. Productos ecológicos y prácticas responsables.</p>
+                <div class="testimonial-quote">
+                    "Encontré clientes que valoran productos ecológicos y sostenibles. La plataforma me conectó exactamente con ellos."
+                </div>
+                <span class="ver-mas-btn">Ver Emprendedores →</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Cartagena Conecta</h3>
+            <p>Impulsando el emprendimiento local</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i> Facebook</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 Cartagena Conecta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

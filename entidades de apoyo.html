@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Entidades de Apoyo</title>
+    <style>
+        /*
+        **************************************************************
+        * ESTE ES EL CSS RESPONSIVE COMPLETO PARA ENTIDADES DE APOYO
+        **************************************************************
+        */
+        
+        /* ==========================================================
+           RESET Y ESTILOS BASE
+           ========================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa; 
+        }
+
+        /* ==========================================================
+           HEADER Y NAVEGACIÓN (RESPONSIVE)
+           ========================================================== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            z-index: 100; /* Asegura que el logo esté sobre el menú al abrir */
+        }
+
+        /* ----------------------------------------------------------
+           ESTILOS PARA MENÚ DE HAMBURGUESA (CSS PURO)
+           ---------------------------------------------------------- */
+
+        /* 1. Checkbox: Oculto en todo momento */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* 2. Label: Actúa como el botón de hamburguesa (Oculto en escritorio) */
+        .hamburger-label {
+            display: none; 
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+
+        /* ==========================================================
+           SECCIONES DE CONTENIDO
+           ========================================================== */
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem; 
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header .subtitle {
+            font-size: 1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+        
+        .click-hint {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* --- SECCIÓN ENTIDADES Y GRILLA --- */
+        .entidades {
+            padding: 1rem 2rem 5rem;
+            min-height: 60vh;
+        }
+
+        .entidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .entidad-wrapper {
+            display: flex;
+            flex-direction: column;
+            /* Se aplica el mismo efecto de elevación al wrapper para que el botón suba con la tarjeta */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .entidad-wrapper:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+        }
+        
+        .entidad-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px 15px 0 0; /* Bordes superiores redondeados */
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra más sutil */
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            flex-grow: 1; 
+            /* Se elimina la transición de la tarjeta para dejarla en el wrapper */
+            transition: none; 
+            margin-bottom: 0;
+        }
+
+        .entidad-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .entidad-wrapper:hover .entidad-card::before {
+            opacity: 1;
+        }
+
+        .entidad-logo {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            color: #667eea; 
+        }
+
+        .entidad-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .entidad-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .entidad-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #667eea;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1;
+        }
+
+        .entidad-wrapper:hover .entidad-card::after {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* --- Estilos del Botón de Ubicación (Separado) --- */
+        .location-btn {
+            background-color: #764ba2;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0 0 8px 8px; /* Bordes inferiores redondeados */
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
+            display: block; 
+            text-align: center;
+        }
+
+        .location-btn i {
+            margin-right: 5px;
+        }
+
+        .location-btn:hover {
+            background-color: #667eea;
+        }
+        
+        .info-section {
+            background: white;
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 4rem auto;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        /* --- Estilos del Footer --- */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+            display: flex; /* Para centrar el icono y texto */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .social-links a i {
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+
+        /* ==========================================================
+           RESPONSIVE: PANTALLAS PEQUEÑAS (MÓVIL) <= 768px
+           ========================================================== */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón de hamburguesa */
+            .hamburger-label {
+                display: block; 
+            }
+
+            /* Transformar el menú en un panel lateral */
+            .nav-links {
+                position: fixed; 
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%; 
+                max-width: 300px; 
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem; 
+                transform: translateX(100%); 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 99;
+            }
+
+            /* Mostrar el menú cuando el checkbox está marcado */
+            #menu-toggle:checked ~ .nav-links {
+                transform: translateX(0); 
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem; 
+                padding: 0.5rem 0;
+            }
+            
+            /* Adaptación de Header */
+            .page-header {
+                padding: 3rem 1.5rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .entidades {
+                padding: 1rem 1rem 3rem;
+            }
+
+            .entidades-grid {
+                grid-template-columns: 1fr; /* Una sola columna en móvil */
+                gap: 2rem;
+            }
+
+            .entidad-card::after {
+                font-size: 1.5rem;
+                bottom: 10px;
+                right: 15px;
+            }
+            
+            .info-section {
+                padding: 2.5rem 1.5rem;
+                margin: 3rem auto;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .social-links a {
+                font-size: 0.9rem;
+            }
+            
+            .social-links a i {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Cartagena Conecta</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger-label" aria-label="Menú de Navegación">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="directorio.html">Directorio Colaborativo</a></li>
+                <li><a href="entidades de apoyo.html" class="active">Entidades de Apoyo</a></li>
+                <li><a href="contactos.html">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Entidades de Apoyo</h1>
+        <p>Organizaciones que respaldan y fortalecen el emprendimiento en Cartagena</p>
+        <p class="subtitle">
+            <span class="click-hint">🌐 Haz clic en la tarjeta para el sitio web. Haz clic en el botón de abajo para la ubicación.</span>
+        </p>
+    </div>
+
+    <section class="entidades">
+        <div class="entidades-grid">
+            
+            <div class="entidad-wrapper">
+                <a href="https://www.cccartagena.org.co/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3>Cámara de Comercio de Cartagena</h3>
+                    <p>Apoyo institucional, registro empresarial y formalización de negocios</p>
+                </a>
+                <a href="https://maps.app.goo.gl/NxHhTi5c378Bf73x9" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicación
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.sena.edu.co/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>SENA</h3>
+                    <p>Capacitación gratuita y formación empresarial para emprendedores</p>
+                </a>
+                <a href="https://maps.app.goo.gl/3MXaaH8jTVip4T717" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicación
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.bancoldex.com/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <h3>Bancóldex</h3>
+                    <p>Financiamiento y créditos especiales para emprendedores y PYMES</p>
+                </a>
+                <a href="https://maps.app.goo.gl/yjzfBaiMmCjWFbAx6" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicacion
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.cartagena.gov.co/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-building"></i></div>
+                    <h3>Alcaldía de Cartagena</h3>
+                    <p>Programas de desarrollo empresarial y apoyo a negocios locales</p>
+                </a>
+                <a href="https://maps.app.goo.gl/EAAUqD3QWNaKoC1h6" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicación
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.innpulsacolombia.com/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>iNNpulsa Colombia</h3>
+                    <p>Impulso a la innovación, emprendimiento dinámico y mentoría</p>
+                </a>
+                <a href="https://maps.app.goo.gl/Ar8W8gDnzGRK5g5z9" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicacion
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.cartagena.gov.co/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h3>Fundaciones Locales</h3>
+                    <p>Apoyo social, comunitario y desarrollo de proyectos productivos</p>
+                </a>
+                <a href="https://maps.app.goo.gl/EAAUqD3QWNaKoC1h6" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicacion
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.mincit.gov.co/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Ministerio de Comercio</h3>
+                    <p>Políticas públicas de apoyo al comercio local y exportaciones</p>
+                </a>
+                <a href="https://maps.app.goo.gl/CdFSfdorVAjQG6dV7" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicacion
+                </a>
+            </div>
+
+            <div class="entidad-wrapper">
+                <a href="https://www.colombiaproductiva.com/" target="_blank" class="entidad-card">
+                    <div class="entidad-logo"><i class="fa-solid fa-earth-americas"></i></div>
+                    <h3>Colombia Productiva</h3>
+                    <p>Transformación productiva, competitividad y mejora de procesos</p>
+                </a>
+                <a href="https://maps.app.goo.gl/Z7hkMgaEpUiWGdxt5" target="_blank" class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicacion
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>¿Cómo te pueden ayudar?</h2>
+        <p>Estas entidades ofrecen diversos programas de apoyo que incluyen capacitación gratuita, financiamiento, asesoría técnica, mentorías y conexiones con otros emprendedores.</p>
+        <p>Cada una cuenta con programas específicos diseñados para impulsar el crecimiento de tu negocio en diferentes etapas: desde la idea inicial hasta la consolidación y expansión.</p>
+        <p>Para más información sobre cómo acceder a estos recursos, contáctanos y te guiaremos en el proceso.</p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Cartagena Conecta</h3>
+            <p>Impulsando el emprendimiento local</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i> Facebook</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">© 2024 Cartagena Conecta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Artesanías - Cartagena Conecta</title>
+    <style>
+        /*
+        **************************************************************
+        * ESTE ES EL CSS RESPONSIVE COMPLETO PARA ARTESANÍAS
+        **************************************************************
+        */
+        
+        /* ==========================================================
+           RESET Y ESTILOS BASE
+           ========================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa; /* Color de fondo añadido al body */
+        }
+
+        /* ==========================================================
+           HEADER Y NAVEGACIÓN (RESPONSIVE)
+           ========================================================== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            z-index: 100;
+        }
+        
+        /* ----------------------------------------------------------
+           ESTILOS PARA MENÚ DE HAMBURGUESA (CSS PURO)
+           ---------------------------------------------------------- */
+        #menu-toggle {
+            display: none;
+        }
+
+        .hamburger-label {
+            display: none; 
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+        /* ==========================================================
+           BREADCRUMB Y ENCABEZADO DE CATEGORÍA
+           ========================================================== */
+
+        .breadcrumb {
+            background: #e9ecef; /* Color más claro */
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .category-header h1 {
+            font-size: 2.8rem; /* Ligeramente más grande */
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .category-header span {
+            font-size: 3.5rem; /* Icono grande */
+            line-height: 1;
+        }
+
+        .category-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ==========================================================
+           SECCIÓN DE EMPRENDEDORES (GRID)
+           ========================================================== */
+
+        .emprendedores-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #495057;
+            margin-bottom: 3rem;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .emprendedores-grid {
+            display: grid;
+            /* 3 columnas por defecto, responsive con auto-fill */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .emprendedor-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .emprendedor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .emprendedor-avatar {
+            width: 90px;
+            height: 90px;
+            background: #fff; /* Fondo blanco para el ícono */
+            border: 3px solid #667eea; /* Borde con color de acento */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem; /* Ícono más grande */
+            color: #764ba2; /* Color secundario para el ícono */
+            margin: 0 auto 1.5rem;
+        }
+
+        .emprendedor-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emprendedor-card .negocio {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .emprendedor-card .descripcion {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            min-height: 75px; /* Altura mínima para mantener consistencia */
+        }
+
+        .contacto-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-whatsapp i {
+            font-size: 1.1rem;
+        }
+
+        /* ==========================================================
+           SECCIÓN DE FORO/COMUNIDAD
+           ========================================================== */
+
+        .foro-section {
+            background: #e9ecef;
+            padding: 4rem 2rem;
+        }
+
+        .foro-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .foro-intro {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .foro-intro h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .foro-intro p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .pregunta-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Estilos de formulario ya eran buenos, solo se añaden los íconos */
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.03);
+        }
+
+        .preguntas-list {
+            margin-top: 3rem;
+        }
+
+        .pregunta-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea; /* Destacar las preguntas */
+        }
+
+        .pregunta-item .autor {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pregunta-item .fecha {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .pregunta-item .contenido {
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-social-links { 
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-social-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-links a:hover {
+            color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .footer-social-links a i {
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+
+        /* ==========================================================
+           RESPONSIVE: PANTALLAS PEQUEÑAS (MÓVIL) <= 768px
+           ========================================================== */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón de hamburguesa */
+            .hamburger-label {
+                display: block; 
+            }
+
+            /* Transformar el menú en un panel lateral */
+            .nav-links {
+                position: fixed; 
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%; 
+                max-width: 300px; 
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem; 
+                transform: translateX(100%); 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 99;
+            }
+
+            /* Mostrar el menú cuando el checkbox está marcado */
+            #menu-toggle:checked ~ .nav-links {
+                transform: translateX(0); 
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem; 
+                padding: 0.5rem 0;
+            }
+
+            .category-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-header span {
+                font-size: 2.8rem;
+            }
+            
+            .category-header p {
+                font-size: 1rem;
+            }
+            
+            .emprendedores-section {
+                padding: 3rem 1rem;
+            }
+
+            .emprendedores-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .emprendedor-card:hover {
+                transform: translateY(0); /* Desactivar la animación horizontal en móvil */
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .foro-section {
+                padding: 3rem 1rem;
+            }
+            
+            .foro-intro h2 {
+                font-size: 1.6rem;
+            }
+            
+            .footer-social-links a i {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Cartagena Conecta</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger-label" aria-label="Menú de Navegación">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="directorio.html" class="active">Directorio Colaborativo</a></li>
+                <li><a href="entidades de apoyo.html">Entidades de Apoyo</a></li>
+                <li><a href="contactos.html">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="directorio.html">← Volver al Directorio</a>
+    </div>
+
+    <div class="category-header">
+        <h1><span><i class="fa-solid fa-palette"></i></span> Artesanías</h1>
+        <p>Artistas y artesanos que preservan la cultura local a través de sus creaciones</p>
+    </div>
+
+    <section class="emprendedores-section">
+        <h2 class="section-title">Emprendedores Destacados</h2>
+        <div class="emprendedores-grid">
+            
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-bowl-food"></i></div>
+                <h3>Carmen Díaz</h3>
+                <p class="negocio">Cerámica y Alfarería</p>
+                <p class="descripcion">Piezas únicas de cerámica hechas a mano. Platos decorativos, vasijas, figuras y jarrones con diseños tradicionales colombianos.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573201234567" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-shirt"></i></div>
+                <h3>Luisa Fernanda Torres</h3>
+                <p class="negocio">Tejidos a Mano</p>
+                <p class="descripcion">Mochilas wayúu, bufandas, cobijas y accesorios tejidos con técnicas tradicionales. Colores vibrantes y diseños personalizados.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573209876543" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-tree-city"></i></div>
+                <h3>Artesanías Don Miguel</h3>
+                <p class="negocio">Tallado en Madera</p>
+                <p class="descripcion">Esculturas, cuadros tallados, joyeros y adornos en madera. Cada pieza es única y refleja la cultura caribeña.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573205551234" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-gem"></i></div>
+                <h3>Joyería Artesanal Coral</h3>
+                <p class="negocio">Bisutería y Accesorios</p>
+                <p class="descripcion">Collares, aretes, pulseras y anillos hechos con materiales naturales. Diseños inspirados en el mar Caribe.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573207778888" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-masks-theater"></i></div>
+                <h3>Máscaras y Arte Popular</h3>
+                <p class="negocio">Arte Folclórico</p>
+                <p class="descripcion">Máscaras tradicionales, instrumentos decorativos y arte popular colombiano. Perfecto para decoración y regalos culturales.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573202223333" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="emprendedor-card">
+                <div class="emprendedor-avatar"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Sandra Moreno</h3>
+                <p class="negocio">Flores Artesanales</p>
+                <p class="descripcion">Arreglos florales permanentes, coronas decorativas y centros de mesa hechos con materiales reciclados y naturales.</p>
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573204445555" class="btn-whatsapp" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="foro-section">
+        <div class="foro-container">
+            <div class="foro-intro">
+                <h2><i class="fa-solid fa-comments"></i> Comunidad y Preguntas</h2>
+                <p>Comparte experiencias sobre artesanías, pide recomendaciones o haz preguntas sobre productos artesanales.</p>
+            </div>
+
+            <div class="pregunta-form">
+                <h3 style="color: #667eea; margin-bottom: 1.5rem;">Hacer una Pregunta</h3>
+                <form id="preguntaForm">
+                    <div class="form-group">
+                        <label for="nombre">Tu Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Ana María">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email (opcional):</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="pregunta">Tu Pregunta o Comentario:</label>
+                        <textarea id="pregunta" name="pregunta" required placeholder="Pregunta sobre artesanías, productos, precios..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Pregunta</button>
+                </form>
+            </div>
+
+            <div class="preguntas-list">
+                <h3 style="color: #333; margin-bottom: 1.5rem;">Preguntas Recientes</h3>
+                
+                <div class="pregunta-item">
+                    <div class="autor"><i class="fa-solid fa-user-circle"></i> Daniela Romero</div>
+                    <div class="fecha">Hace 2 días</div>
+                    <div class="contenido">Busco mochilas wayúu auténticas para regalar. ¿Alguien me puede recomendar?</div>
+                </div>
+
+                <div class="pregunta-item">
+                    <div class="autor"><i class="fa-solid fa-user-circle"></i> Jorge Castillo</div>
+                    <div class="fecha">Hace 4 días</div>
+                    <div class="contenido">¿Dónde puedo encontrar esculturas en madera para decorar mi casa? Busco algo único.</div>
+                </div>
+
+                <div class="pregunta-item">
+                    <div class="autor"><i class="fa-solid fa-user-circle"></i> Isabella Martínez</div>
+                    <div class="fecha">Hace 1 semana</div>
+                    <div class="contenido">Necesito un regalo especial hecho a mano. ¿Recomendaciones de artesanos locales?</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Cartagena Conecta</h3>
+            <p>Impulsando el emprendimiento local</p>
+            <div class="footer-social-links">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 Cartagena Conecta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('preguntaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Despliega una alerta de confirmación, luego limpia el formulario.
+            const nombre = document.getElementById('nombre').value;
+            alert('¡Gracias ' + nombre + '! Tu pregunta ha sido enviada y será visible pronto.');
+            this.reset();
+            
+            // Cierre del menú móvil al enviar el formulario (si estuviera abierto)
+            document.getElementById('menu-toggle').checked = false;
+        });
+
+        // Función para manejar el cierre del menú al hacer clic en un enlace (en móvil)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
+        });
+    </script>
+</body>
+</html>

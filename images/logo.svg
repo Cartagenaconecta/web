@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        font-family: FONTSPRINGDEMO-AllRoundGothicBoldRegular, 'FONTSPRING DEMO - All Round Gothic Bold';
+        font-size: 80px;
+      }
+
+      .cls-5 {
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+
+      .cls-5, .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-8 {
+        font-family: FONTSPRINGDEMO-AllRoundGothicBookRegular, 'FONTSPRING DEMO - All Round Gothic Book';
+        font-size: 70px;
+      }
+
+      .cls-6 {
+        fill: none;
+        stroke: #000;
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <text transform="translate(301.08 661.4)"><tspan class="cls-4"><tspan x="0" y="0">CA</tspan><tspan class="cls-3" x="114.4" y="0">R</tspan><tspan class="cls-7" x="163.6" y="0">T</tspan><tspan x="207.84" y="0">AGENA</tspan></tspan><tspan class="cls-8"><tspan x="75.15" y="84">CONE</tspan><tspan class="cls-1" x="268.42" y="84">C</tspan><tspan class="cls-2" x="317.49" y="84">T</tspan><tspan x="355.92" y="84">A</tspan></tspan></text>
+  <circle class="cls-5" cx="683.02" cy="689.94" r="10.35"/>
+  <circle class="cls-5" cx="599.88" cy="664.3" r="10.35"/>
+  <circle class="cls-5" cx="500.02" cy="689.94" r="10.35"/>
+  <circle class="cls-5" cx="405.31" cy="664.3" r="10.35"/>
+  <path class="cls-6" d="M405.31,663.3l94.71,28.14c33.29-11.62,66.57-18.24,99.86-29.87,27.71,9.96,55.43,19.91,83.14,29.87"/>
+</svg>

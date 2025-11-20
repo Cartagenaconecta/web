@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Contáctenos - Cartagena Conecta</title>
+    <style>
+        /*
+        **************************************************************
+        * ESTE ES EL CSS RESPONSIVE COMPLETO PARA CONTÁCTENOS
+        **************************************************************
+        */
+        
+        /* ==========================================================
+           RESET Y ESTILOS BASE
+           ========================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* ==========================================================
+           HEADER Y NAVEGACIÓN (RESPONSIVE)
+           ========================================================== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            z-index: 100;
+        }
+
+        /* ----------------------------------------------------------
+           ESTILOS PARA MENÚ DE HAMBURGUESA (CSS PURO)
+           ---------------------------------------------------------- */
+        #menu-toggle {
+            display: none;
+        }
+
+        .hamburger-label {
+            display: none; 
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+
+        /* ==========================================================
+           SECCIONES DE CONTENIDO
+           ========================================================== */
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contacto {
+            padding: 5rem 2rem;
+            min-height: 60vh;
+        }
+
+        .contact-container {
+            max-width: 1200px; /* Aumentado para mejor distribución */
+            margin: 0 auto;
+            display: grid;
+            /* 2 columnas: 1 para formulario, 1 para info/social */
+            grid-template-columns: 2fr 1fr; 
+            gap: 3rem;
+        }
+        
+        /* Nuevo contenedor para agrupar Info y Redes */
+        .info-social-group {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem; /* Reducido el padding para que encaje mejor */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem; /* Reducido el margen */
+            font-size: 1.8rem; /* Reducido el tamaño */
+            text-align: center;
+        }
+
+        .contact-info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Reducido el gap */
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start; /* Alineación al inicio */
+            gap: 1rem;
+            padding: 1rem; /* Reducido el padding */
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-item-icon {
+            font-size: 1.8rem; /* Reducido el tamaño */
+            width: 40px; /* Reducido el ancho */
+            text-align: center;
+            flex-shrink: 0; /* Evita que el icono se encoja */
+        }
+
+        .contact-item-content h3 {
+            color: #667eea;
+            margin-bottom: 0.3rem;
+            font-size: 1rem; /* Reducido el tamaño */
+        }
+
+        .contact-item-content p {
+            color: #666;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .social-section {
+            background: white;
+            padding: 2rem; /* Reducido el padding */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .social-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem; /* Reducido el margen */
+            font-size: 1.8rem; /* Reducido el tamaño */
+        }
+
+        .social-section p {
+            color: #666;
+            margin-bottom: 1.5rem; /* Reducido el margen */
+            font-size: 1rem;
+        }
+
+        .social-links-container { /* Renombrado para evitar conflicto */
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* Reducido el gap */
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem; /* Reducido el padding */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.9rem; /* Reducido el tamaño */
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* --- Estilos del Footer (Duplicado) --- */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-social-links { /* Nuevo nombre para el div de links del footer */
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-social-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-links a:hover {
+            color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .footer-social-links a i {
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+        /* --- Fin Estilos del Footer --- */
+
+
+        /* ==========================================================
+           RESPONSIVE: PANTALLAS PEQUEÑAS (MÓVIL) <= 768px
+           ========================================================== */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón de hamburguesa */
+            .hamburger-label {
+                display: block; 
+            }
+
+            /* Transformar el menú en un panel lateral */
+            .nav-links {
+                position: fixed; 
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%; 
+                max-width: 300px; 
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem; 
+                transform: translateX(100%); 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 99;
+            }
+
+            /* Mostrar el menú cuando el checkbox está marcado */
+            #menu-toggle:checked ~ .nav-links {
+                transform: translateX(0); 
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem; 
+                padding: 0.5rem 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .contacto {
+                padding: 3rem 1rem;
+            }
+
+            /* Stackear el grid en móvil */
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form,
+            .contact-info,
+            .social-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .info-social-group {
+                gap: 2rem;
+            }
+            
+            .contact-item:hover {
+                transform: translateX(0); /* Desactivar la animación horizontal en móvil */
+            }
+
+            .social-links-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-social-links {
+                gap: 1.5rem;
+            }
+            
+            .footer-social-links a i {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Cartagena Conecta</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger-label" aria-label="Menú de Navegación">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="directorio.html">Directorio Colaborativo</a></li>
+                <li><a href="entidades de apoyo.html">Entidades de Apoyo</a></li>
+                <li><a href="contactos.html" class="active">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Contáctenos</h1>
+        <p>¿Tienes preguntas o quieres ser parte de nuestra comunidad? Estamos aquí para ayudarte</p>
+    </div>
+
+    <section class="contacto">
+        <div class="contact-container">
+            
+            <div class="contact-form">
+                <h2>Envíanos un Mensaje</h2>
+                <form id="contactForm" action="#" method="POST"> <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+57 300 123 4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto *</label>
+                        <input type="text" id="asunto" name="asunto" required placeholder="¿En qué podemos ayudarte?">
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" required placeholder="Cuéntanos más detalles..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensaje</button>
+                </form>
+            </div>
+
+            <div class="info-social-group">
+                 <div class="contact-info">
+                    <h2>Información de Contacto</h2>
+                    <div class="contact-info-items">
+                        <div class="contact-item">
+                            <span class="contact-item-icon"><i class="fa-solid fa-envelope" style="color: #667eea;"></i></span>
+                            <div class="contact-item-content">
+                                <h3>Correo Electrónico</h3>
+                                <p>info@cartagenaconecta.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon"><i class="fa-brands fa-whatsapp" style="color: #667eea;"></i></span>
+                            <div class="contact-item-content">
+                                <h3>Teléfono / WhatsApp</h3>
+                                <p>+57 300 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon"><i class="fa-solid fa-location-dot" style="color: #667eea;"></i></span>
+                            <div class="contact-item-content">
+                                <h3>Ubicación</h3>
+                                <p>Cartagena de Indias, Colombia</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon"><i class="fa-regular fa-clock" style="color: #667eea;"></i></span>
+                            <div class="contact-item-content">
+                                <h3>Horario de Atención</h3>
+                                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <h2>Síguenos en Redes Sociales</h2>
+                    <p>Mantente conectado con nuestra comunidad de emprendedores</p>
+                    <div class="social-links-container">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Cartagena Conecta</h3>
+            <p>Impulsando el emprendimiento local</p>
+            <div class="footer-social-links">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 Cartagena Conecta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Este es un script de prueba. En un entorno real, aquí se usaría AJAX para enviar los datos a un servidor.
+            alert('¡Gracias por contactarnos! Hemos recibido tu mensaje y te responderemos pronto.');
+            this.reset();
+        });
+        
+        // Función para manejar el cierre del menú al hacer clic en un enlace (en móvil)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
+        });
+    </script>
+</body>
+</html>
